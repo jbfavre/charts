@@ -127,7 +127,7 @@ data:
                         "tableColumn": "",
                         "targets": [
                             {
-                                "expr": "apiserver_request:availability30d{verb=\"all\", cluster=\"$cluster\"}",
+                                "expr": "apiserver_request:availability10d{verb=\"all\"}",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "",
@@ -135,7 +135,7 @@ data:
                             }
                         ],
                         "thresholds": "",
-                        "title": "Availability (30d) > 99.000%",
+                        "title": "Availability (10d) > 99.000",
                         "tooltip": {
                             "shared": false
                         },
@@ -197,7 +197,7 @@ data:
                         "steppedLine": false,
                         "targets": [
                             {
-                                "expr": "100 * (apiserver_request:availability30d{verb=\"all\", cluster=\"$cluster\"} - 0.990000)",
+                                "expr": "100 * (apiserver_request:availability10d{verb=\"all\"} - 0.990000)",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "errorbudget",
@@ -209,7 +209,7 @@ data:
                         ],
                         "timeFrom": null,
                         "timeShift": null,
-                        "title": "ErrorBudget (30d) > 99.000%",
+                        "title": "ErrorBudget (10d) > 99.000",
                         "tooltip": {
                             "shared": false,
                             "sort": 0,
@@ -322,7 +322,7 @@ data:
                         "tableColumn": "",
                         "targets": [
                             {
-                                "expr": "apiserver_request:availability30d{verb=\"read\", cluster=\"$cluster\"}",
+                                "expr": "apiserver_request:availability10d{verb=\"read\"}",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "",
@@ -330,7 +330,7 @@ data:
                             }
                         ],
                         "thresholds": "",
-                        "title": "Read Availability (30d)",
+                        "title": "Read Availability (10d)",
                         "tooltip": {
                             "shared": false
                         },
@@ -715,7 +715,7 @@ data:
                         "tableColumn": "",
                         "targets": [
                             {
-                                "expr": "apiserver_request:availability30d{verb=\"write\", cluster=\"$cluster\"}",
+                                "expr": "apiserver_request:availability10d{verb=\"write\"}",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "",
@@ -723,7 +723,7 @@ data:
                             }
                         ],
                         "thresholds": "",
-                        "title": "Write Availability (30d)",
+                        "title": "Write Availability (10d)",
                         "tooltip": {
                             "shared": false
                         },
