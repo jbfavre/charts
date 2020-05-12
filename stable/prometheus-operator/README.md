@@ -285,7 +285,7 @@ The following tables list the configurable parameters of the prometheus-operator
 | `prometheus.prometheusSpec.externalLabels` | The labels to add to any time series or alerts when communicating with external systems (federation, remote storage, Alertmanager). | `{}` |
 | `prometheus.prometheusSpec.externalUrl` | The external URL the Prometheus instances will be available under. This is necessary to generate correct URLs. This is necessary if Prometheus is not served from root of a DNS name. | `""` |
 | `prometheus.prometheusSpec.image.repository` | Base image to use for a Prometheus deployment. | `quay.io/prometheus/prometheus` |
-| `prometheus.prometheusSpec.image.tag` | Tag of Prometheus container image to be deployed. | `v2.17.2` |
+| `prometheus.prometheusSpec.image.tag` | Tag of Prometheus container image to be deployed. | `v2.18.0` |
 | `prometheus.prometheusSpec.listenLocal` | ListenLocal makes the Prometheus server listen on loopback, so that it does not bind against the Pod IP. | `false` |
 | `prometheus.prometheusSpec.logFormat` | Log format for Prometheus to be configured with. | `logfmt` |
 | `prometheus.prometheusSpec.logLevel` | Log level for Prometheus to be configured with. | `info` |
@@ -446,7 +446,7 @@ For a full list of configurable values please refer to the [Grafana chart](https
 | `grafana.enabled` | If true, deploy the grafana sub-chart | `true` |
 | `grafana.extraConfigmapMounts` | Additional grafana server configMap volume mounts | `[]` |
 | `grafana.grafana.ini` | Grafana's primary configuration | `{}`
-| `grafana.image.tag` | Image tag. (`Must be >= 5.0.0`) | `6.2.5` |
+| `grafana.image.tag` | Image tag. (`Must be >= 5.0.0`) | `6.7.3` |
 | `grafana.ingress.annotations` | Ingress annotations for Grafana | `{}` |
 | `grafana.ingress.enabled` | Enables Ingress for Grafana | `false` |
 | `grafana.ingress.hosts` | Ingress accepted hostnames for Grafana| `[]` |
