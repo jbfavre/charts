@@ -1334,7 +1334,7 @@ prometheusOperator:
   ##
   image:
     repository: quay.io/coreos/prometheus-operator
-    tag: v0.38.1
+    tag: v0.40.0
     sha: ""
     pullPolicy: IfNotPresent
 
@@ -1349,7 +1349,7 @@ prometheusOperator:
   ##
   prometheusConfigReloaderImage:
     repository: quay.io/coreos/prometheus-config-reloader
-    tag: v0.38.1
+    tag: v0.40.0
     sha: ""
 
   ## Set the prometheus config reloader side-car CPU limit
