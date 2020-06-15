@@ -208,7 +208,7 @@ The following tables list the configurable parameters of the prometheus-operator
 | `prometheusOperator.hyperkubeImage.tag` | Tag for hyperkube image used to perform maintenance tasks | `v1.12.1` |
 | `prometheusOperator.image.pullPolicy` | Pull policy for prometheus operator image | `IfNotPresent` |
 | `prometheusOperator.image.repository` | Repository for prometheus operator image | `quay.io/coreos/prometheus-operator` |
-| `prometheusOperator.image.tag` | Tag for prometheus operator image | `v0.38.1` |
+| `prometheusOperator.image.tag` | Tag for prometheus operator image | `v0.39.0` |
 | `prometheusOperator.kubeletService.enabled` | If true, the operator will create and maintain a service for scraping kubelets | `true` |
 | `prometheusOperator.kubeletService.namespace` | Namespace to deploy kubelet service | `kube-system` |
 | `prometheusOperator.logFormat` | Operator log output formatting | `"logfmt"` |
