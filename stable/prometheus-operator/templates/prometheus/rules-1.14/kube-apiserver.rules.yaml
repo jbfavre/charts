@@ -283,6 +283,78 @@ spec:
       labels:
         verb: write
       record: apiserver_request:burnrate6h
+    - expr: |-
+        1 - (
+          (
+            # write too slow
+            sum(increase(apiserver_request_duration_seconds_count{verb=~"POST|PUT|PATCH|DELETE"}[10d]))
+            -
+            sum(increase(apiserver_request_duration_seconds_bucket{verb=~"POST|PUT|PATCH|DELETE",le="1"}[10d]))
+          ) +
+          (
+            # read too slow
+            sum(increase(apiserver_request_duration_seconds_count{verb=~"LIST|GET"}[10d]))
+            -
+            (
+              sum(increase(apiserver_request_duration_seconds_bucket{verb=~"LIST|GET",scope="resource",le="0.1"}[10d])) +
+              sum(increase(apiserver_request_duration_seconds_bucket{verb=~"LIST|GET",scope="namespace",le="0.5"}[10d])) +
+              sum(increase(apiserver_request_duration_seconds_bucket{verb=~"LIST|GET",scope="cluster",le="5"}[10d]))
+            )
+          ) +
+          # errors
+          sum(code:apiserver_request_total:increase10d{code=~"5.."})
+        )
+        /
+        sum(code:apiserver_request_total:increase10d)
+      labels:
+        verb: all
+      record: apiserver_request:availability10d
+    - expr: |-
+        1 - (
+          sum(increase(apiserver_request_duration_seconds_count{job="apiserver",verb=~"LIST|GET"}[10d]))
+          -
+          (
+            # too slow
+            sum(increase(apiserver_request_duration_seconds_bucket{job="apiserver",verb=~"LIST|GET",scope="resource",le="0.1"}[10d])) +
+            sum(increase(apiserver_request_duration_seconds_bucket{job="apiserver",verb=~"LIST|GET",scope="namespace",le="0.5"}[10d])) +
+            sum(increase(apiserver_request_duration_seconds_bucket{job="apiserver",verb=~"LIST|GET",scope="cluster",le="5"}[10d]))
+          )
+          +
+          # errors
+          sum(code:apiserver_request_total:increase10d{verb="read",code=~"5.."})
+        )
+        /
+        sum(code:apiserver_request_total:increase10d{verb="read"})
+      labels:
+        verb: read
+      record: apiserver_request:availability10d
+    - expr: |-
+        1 - (
+          (
+            # too slow
+            sum(increase(apiserver_request_duration_seconds_count{verb=~"POST|PUT|PATCH|DELETE"}[10d]))
+            -
+            sum(increase(apiserver_request_duration_seconds_bucket{verb=~"POST|PUT|PATCH|DELETE",le="1"}[10d]))
+          )
+          +
+          # errors
+          sum(code:apiserver_request_total:increase10d{verb="write",code=~"5.."})
+        )
+        /
+        sum(code:apiserver_request_total:increase10d{verb="write"})
+      labels:
+        verb: write
+      record: apiserver_request:availability10d
+    - expr: sum by (code, verb) (increase(apiserver_request_total{job="apiserver"}[10d]))
+      record: code_verb:apiserver_request_total:increase10d
+    - expr: sum by (code) (code_verb:apiserver_request_total:increase10d{verb=~"LIST|GET"})
+      labels:
+        verb: read
+      record: code:apiserver_request_total:increase10d
+    - expr: sum by (code) (code_verb:apiserver_request_total:increase10d{verb=~"POST|PUT|PATCH|DELETE"})
+      labels:
+        verb: write
+      record: code:apiserver_request_total:increase10d
     - expr: sum by (code,resource) (rate(apiserver_request_total{job="apiserver",verb=~"LIST|GET"}[5m]))
       labels:
         verb: read

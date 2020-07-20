@@ -589,6 +589,7 @@ For a full list of configurable values please refer to the [Grafana chart](https
 | `kubelet.serviceMonitor.relabelings` | The `relabel_configs` for scraping kubelet. | `[{"sourceLabels":["__metrics_path__"], "targetLabel":"metrics_path"}]` |
 | `nodeExporter.enabled` | Deploy the `prometheus-node-exporter` and scrape it | `true` |
 | `nodeExporter.jobLabel` | The name of the label on the target service to use as the job name in prometheus. See `prometheus-node-exporter.podLabels.jobLabel=node-exporter` default | `jobLabel` |
+| `nodeExporter.namespaceOverride` | The name of the namespace in which node-exporter will be deployed. See `prometheus-node-exporter.namespaceOverride` default | `nil` |
 | `nodeExporter.serviceMonitor.interval` | Scrape interval. If not set, the Prometheus default scrape interval is used | `nil` |
 | `nodeExporter.serviceMonitor.scrapeTimeout` | How long until a scrape request times out. If not set, the Prometheus default scape timeout is used | `nil` |
 | `nodeExporter.serviceMonitor.metricRelabelings` | Metric relablings for the `prometheus-node-exporter` ServiceMonitor | `[]` |

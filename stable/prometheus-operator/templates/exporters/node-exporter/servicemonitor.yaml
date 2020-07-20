@@ -3,7 +3,11 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: {{ template "prometheus-operator.fullname" . }}-node-exporter
-  namespace: {{ template "prometheus-operator.namespace" . }}
+  namespace: {{ if .Values.nodeExporter.namespaceOverride -}}
+    {{- .Values.nodeExporter.namespaceOverride -}}
+  {{- else -}}
+    {{ template "prometheus-operator.namespace" . }}
+  {{- end }}
   labels:
     app: {{ template "prometheus-operator.name" . }}-node-exporter
 {{ include "prometheus-operator.labels" . | indent 4 }}
