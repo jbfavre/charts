@@ -63,17 +63,4 @@ spec:
         long: 1d
         severity: warning
         short: 2h
-    - alert: KubeAPIErrorBudgetBurn
-      annotations:
-        message: The API server is burning too much error budget
-        runbook_url: {{ .Values.defaultRules.runbookUrl }}alert-name-kubeapierrorbudgetburn
-      expr: |-
-        sum(apiserver_request:burnrate3d) > (1.00 * 0.01000)
-        and
-        sum(apiserver_request:burnrate6h) > (1.00 * 0.01000)
-      for: 3h
-      labels:
-        long: 3d
-        severity: warning
-        short: 6h
 {{- end }}
