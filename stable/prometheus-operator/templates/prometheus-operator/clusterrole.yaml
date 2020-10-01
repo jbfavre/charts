@@ -19,15 +19,15 @@ rules:
   - monitoring.coreos.com
   resources:
   - alertmanagers
-  - prometheuses
-  - thanosrulers
-  - prometheuses/finalizers
   - alertmanagers/finalizers
+  - prometheuses
+  - prometheuses/finalizers
+  - thanosrulers
   - thanosrulers/finalizers
   - servicemonitors
   - podmonitors
+  - probes
   - prometheusrules
-  - podmonitors
   verbs:
   - '*'
 - apiGroups:
