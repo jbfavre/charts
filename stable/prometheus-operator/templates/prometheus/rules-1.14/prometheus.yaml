@@ -191,6 +191,7 @@ spec:
       for: 15m
       labels:
         severity: critical
+        runbook_url: https://ops-run-book.corp.blablacar.com/sre/monitoring/prometheus-errors
     - alert: PrometheusMissingRuleEvaluations
       annotations:
         description: Prometheus {{`{{`}}$labels.namespace{{`}}`}}/{{`{{`}}$labels.pod{{`}}`}} has missed {{`{{`}} printf "%.0f" $value {{`}}`}} rule group evaluations in the last 5m.
