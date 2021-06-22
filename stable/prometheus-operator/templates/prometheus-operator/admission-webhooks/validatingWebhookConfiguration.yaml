@@ -28,4 +28,6 @@ webhooks:
         namespace: {{ template "prometheus-operator.namespace" . }}
         name: {{ template "prometheus-operator.operator.fullname" $ }}
         path: /admission-prometheusrules/validate
+    admissionReviewVersions: ["v1", "v1beta1"]
+    sideEffects: None
 {{- end }}
